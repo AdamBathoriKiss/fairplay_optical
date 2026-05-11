@@ -1,0 +1,140 @@
+const products = [
+  {
+    title: 'Optikai lencsés kereteink',
+    img:   'assets/product1.jpg',
+    desc:  "Másik kisebb leíró szöveg az aktuális kép mellé. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+  },
+  {
+    title: 'Acetát Előtétes Kereteink',
+    img:   'assets/product2.jpg',
+    desc:  "Acetát kereteink kiváló minőségű alapanyagból készülnek. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  },
+  {
+    title: 'Clip-onos Kereteink',
+    img:   'assets/product3.jpg',
+    desc:  "Clip-on megoldásaink praktikus választást kínálnak mindennapi használatra. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  },
+];
+
+const section    = document.querySelector('.products');
+const leftTab    = section.querySelector(':scope > .product-tab');
+const leftNum    = leftTab.querySelector('.product-tab__num');
+const leftLabel  = leftTab.querySelector('.product-tab__label');
+const titleEl    = section.querySelector('.products__title');
+const imgEl      = section.querySelector('.products__img');
+const descEl     = section.querySelector('.products__desc');
+const content    = section.querySelector('.products__content');
+
+let currentIdx  = 0;
+let isAnimating = false;
+
+const EXIT_MS  = 220;
+const ENTER_MS = 400;
+
+// Jobb oszlop frissítése: mindig a két inaktív terméket mutatja
+function updateRightColumn(activeIdx) {
+  const inactive = products.map((_, i) => i).filter(i => i !== activeIdx);
+  section.querySelectorAll('.products__inactive-tabs .product-tab').forEach((btn, i) => {
+    const pi = inactive[i];
+    btn.dataset.index = pi;
+    btn.querySelector('.product-tab__num').textContent   = String(pi + 1).padStart(2, '0');
+    btn.querySelector('.product-tab__label').textContent = products[pi].title;
+  });
+}
+
+function slide(el, toX, duration, easing) {
+  el.style.transition = `transform ${duration}ms ${easing}, opacity ${duration}ms ease`;
+  el.style.transform  = `translateX(${toX}px)`;
+}
+
+function switchProduct(newIdx) {
+  if (isAnimating || newIdx === currentIdx) return;
+  isAnimating = true;
+
+  // 1 = előre (jobbról jön), -1 = vissza (balról jön)
+  const dir = newIdx > currentIdx ? 1 : -1;
+
+  // Kiúszik: tartalom + bal felirat együtt
+  slide(content,  -dir * 60, EXIT_MS, 'ease');
+  slide(leftTab,  -dir * 60, EXIT_MS, 'ease');
+  content.style.opacity = '0';
+  leftTab.style.opacity = '0';
+
+  setTimeout(() => {
+    // Tartalom frissítése
+    const p = products[newIdx];
+    titleEl.textContent  = p.title;
+    imgEl.src            = p.img;
+    descEl.textContent   = p.desc;
+
+    // Bal felirat frissítése
+    leftNum.textContent   = String(newIdx + 1).padStart(2, '0');
+    leftLabel.textContent = p.title;
+
+    // Jobb oszlop frissítése
+    updateRightColumn(newIdx);
+    currentIdx = newIdx;
+
+    // Beúszás kiindulópontja (ellentétes oldal)
+    [content, leftTab].forEach(el => {
+      el.style.transition = 'none';
+      el.style.transform  = `translateX(${dir * 60}px)`;
+      el.style.opacity    = '0';
+    });
+    void content.offsetWidth; // force reflow
+
+    // Beúszik
+    slide(content, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)');
+    slide(leftTab, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)');
+    content.style.opacity = '1';
+    leftTab.style.opacity = '1';
+
+    setTimeout(() => {
+      [content, leftTab].forEach(el => {
+        el.style.transition = '';
+        el.style.transform  = '';
+        el.style.opacity    = '';
+      });
+      isAnimating = false;
+    }, ENTER_MS);
+  }, EXIT_MS);
+}
+
+// Csak a jobb oszlop gombjain van kattintáskezelő (a bal tab az aktív állapotot mutatja)
+section.querySelectorAll('.products__inactive-tabs .product-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    switchProduct(parseInt(tab.dataset.index, 10));
+  });
+});
+
+
+/* ===========================================
+   GALLERY — scroll-driven cover effect
+=========================================== */
+const gallery = document.querySelector('.gallery');
+
+if (gallery) {
+  const cards = Array.from(gallery.querySelectorAll('.gallery__card'));
+
+  function updateGallery() {
+    if (window.innerWidth <= 639) return;
+
+    const scrolled = -gallery.getBoundingClientRect().top;
+    const vh = window.innerHeight;
+
+    cards.forEach((card, i) => {
+      card.style.zIndex = i + 1;
+      if (i === 0) {
+        card.style.clipPath = 'inset(0 0 0 0)';
+      } else {
+        const segmentStart = (i - 1) * vh;
+        const progress = Math.max(0, Math.min(1, (scrolled - segmentStart) / vh));
+        const reveal = Math.round((1 - progress) * 100);
+        card.style.clipPath = `inset(${reveal}% 0 0 0)`;
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateGallery, { passive: true });
+  updateGallery();
+}

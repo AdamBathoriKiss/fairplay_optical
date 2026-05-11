@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FairPlay Optical</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__logo">
+      <img src="assets/logo.png" alt="FairPlay Optical logo" class="hero__logo-img" />
+      <nav class="navbar">
+        <a href="#rolunk">Rólunk</a>
+        <span class="dot"></span>
+        <a href="#termekek">Termékeink</a>
+        <span class="dot"></span>
+        <a href="#velemenyek">Vélemények</a>
+        <span class="dot"></span>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </nav>
+    </div>
+    <div class="hero__img-wrap">
+      <div class="hero__img-crop">
+        <img src="assets/hero.jpg" alt="FairPlay szemüveg" class="hero__img" />
+      </div>
+    </div>
+    <div class="hero__title"><p>FAIRPLAY</p></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="rolunk">
+    <div class="about__bg-dark"></div>
+    <div class="about__card">
+      <div class="about__text">
+        <h2 class="heading-serif">Rólunk</h2>
+        <p class="body-text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+      </div>
+      <div class="about__img-wrap">
+        <img src="assets/about.jpg" alt="FairPlay Optical" class="about__img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="termekek">
+    <!-- Active tab label column -->
+    <div class="product-tab active" data-index="0">
+      <span class="product-tab__num">01</span>
+      <span class="product-tab__label">Optikai lencsés kereteink</span>
+    </div>
+    <!-- Product content -->
+    <div class="products__content">
+      <h2 class="heading-serif products__title">Optikai lencsés kereteink</h2>
+      <img src="assets/product1.jpg" alt="Optikai keretek" class="products__img" />
+      <p class="body-text products__desc">Másik kisebb leíró szöveg az aktuális kép mellé. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+    </div>
+    <!-- Inactive tabs on the right -->
+    <div class="products__inactive-tabs">
+      <button class="product-tab" data-index="1">
+        <span class="product-tab__num">02</span>
+        <span class="product-tab__label">Acetát Előtétes Kereteink</span>
+      </button>
+      <button class="product-tab" data-index="2">
+        <span class="product-tab__num">03</span>
+        <span class="product-tab__label">Clip-onos Kereteink</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery__inner">
+      <div class="gallery__left">
+        <h2 class="heading-serif gallery__title">Legújabb kollekciónk</h2>
+      </div>
+      <div class="gallery__right">
+        <div class="gallery__card">
+          <img src="assets/gallery-new1.png" alt="Kollekció kép 1" class="gallery__card-img" />
+        </div>
+        <div class="gallery__card">
+          <img src="assets/gallery-new3.png" alt="Kollekció kép 2" class="gallery__card-img" />
+        </div>
+        <div class="gallery__card">
+          <img src="assets/gallery-new2.png" alt="Kollekció kép 3" class="gallery__card-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="velemenyek">
+    <h2 class="heading-serif reviews__title">Partnereink mondták</h2>
+    <div class="reviews__grid">
+      <div class="review-card">
+        <p class="review-card__text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+        <p class="review-card__author">Waldhauser Optika<br />Miskolc</p>
+      </div>
+      <div class="review-card">
+        <p class="review-card__text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+        <p class="review-card__author">Hatalyák Optika<br />Aszód</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="kapcsolat">
+    <div class="footer__bg-title">FAIRPLAY</div>
+    <div class="footer__inner">
+      <div class="footer__cta">
+        <p class="footer__tagline">Ne csak nézz, láss is – stílusosan.</p>
+        <div class="footer__email">
+          <span class="footer__email-label">E-mail</span>
+          <span class="footer__email-arrow">&#x2197;</span>
+          <div class="footer__email-line"></div>
+        </div>
+      </div>
+      <nav class="footer__nav">
+        <p class="footer__nav-heading">Navigáció</p>
+        <a href="#">Főoldal</a>
+        <a href="#rolunk">Rólunk</a>
+        <a href="#termekek">Termékeink</a>
+        <a href="#velemenyek">Vélemények</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </nav>
+      <div class="footer__socials">
+        <p class="footer__nav-heading">Közösségi</p>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <hr class="footer__line" />
+      <div class="footer__bottom-row">
+        <span class="footer__copy">Fairplay Optical Kft - Kazincbarcika</span>
+        <img src="assets/logo.png" alt="" class="footer__logo" />
+        <span class="footer__copy footer__copy--right">2026 Minden jog fenntartva</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
