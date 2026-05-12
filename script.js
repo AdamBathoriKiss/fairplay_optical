@@ -17,7 +17,7 @@ const products = [
 ];
 
 const section    = document.querySelector('.products');
-const leftTab    = section.querySelector(':scope > .product-tab');
+const leftTab    = section.querySelector('.product-tab.active');
 const leftNum    = leftTab.querySelector('.product-tab__num');
 const leftLabel  = leftTab.querySelector('.product-tab__label');
 const titleEl    = section.querySelector('.products__title');
@@ -27,6 +27,7 @@ const content    = section.querySelector('.products__content');
 
 let currentIdx  = 0;
 let isAnimating = false;
+let pendingIdx  = -1;
 
 const EXIT_MS  = 220;
 const ENTER_MS = 400;
@@ -50,8 +51,10 @@ function slide(el, toX, duration, easing) {
 }
 
 function switchProduct(newIdx) {
-  if (isAnimating || newIdx === currentIdx) return;
+  if (newIdx === currentIdx) return;
+  if (isAnimating) { pendingIdx = newIdx; return; }
   isAnimating = true;
+  pendingIdx = -1;
 
   // 1 = előre (jobbról jön), -1 = vissza (balról jön)
   const dir = newIdx > currentIdx ? 1 : -1;
@@ -98,16 +101,36 @@ function switchProduct(newIdx) {
         el.style.opacity    = '';
       });
       isAnimating = false;
+      if (pendingIdx !== -1 && pendingIdx !== currentIdx) {
+        const p = pendingIdx; pendingIdx = -1;
+        switchProduct(p);
+      }
     }, ENTER_MS);
   }, EXIT_MS);
 }
 
-// Csak a jobb oszlop gombjain van kattintáskezelő (a bal tab az aktív állapotot mutatja)
+// Inactive tab kattintás → görget a megfelelő termék pozíciójára
 section.querySelectorAll('.products__inactive-tabs .product-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    switchProduct(parseInt(tab.dataset.index, 10));
+    const idx = parseInt(tab.dataset.index, 10);
+    const top = section.getBoundingClientRect().top + window.scrollY + idx * window.innerHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+/* ===========================================
+   PRODUCTS — scroll-driven termékváltás
+=========================================== */
+function updateProductsOnScroll() {
+  if (window.innerWidth <= 1023) return;
+  const scrolled = -section.getBoundingClientRect().top;
+  const vh = window.innerHeight;
+  if (scrolled < 0 || scrolled >= products.length * vh) return;
+  const newIdx = Math.min(Math.floor(scrolled / vh), products.length - 1);
+  switchProduct(newIdx);
+}
+
+window.addEventListener('scroll', updateProductsOnScroll, { passive: true });
 
 
 /* ===========================================
