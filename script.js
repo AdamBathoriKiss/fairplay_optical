@@ -45,9 +45,10 @@ function updateRightColumn(activeIdx) {
   });
 }
 
-function slide(el, toX, duration, easing) {
+function slide(el, to, duration, easing, axis) {
+  const fn = axis === 'y' ? 'translateY' : 'translateX';
   el.style.transition = `transform ${duration}ms ${easing}, opacity ${duration}ms ease`;
-  el.style.transform  = `translateX(${toX}px)`;
+  el.style.transform  = `${fn}(${to}px)`;
 }
 
 function switchProduct(newIdx) {
@@ -56,41 +57,37 @@ function switchProduct(newIdx) {
   isAnimating = true;
   pendingIdx = -1;
 
-  // 1 = előre (jobbról jön), -1 = vissza (balról jön)
-  const dir = newIdx > currentIdx ? 1 : -1;
+  const isMobile = window.innerWidth <= 639;
+  const axis = isMobile ? 'y' : 'x';
+  const dir  = newIdx > currentIdx ? 1 : -1;
+  const fn   = isMobile ? 'translateY' : 'translateX';
 
-  // Kiúszik: tartalom + bal felirat együtt
-  slide(content,  -dir * 60, EXIT_MS, 'ease');
-  slide(leftTab,  -dir * 60, EXIT_MS, 'ease');
+  slide(content,  -dir * 60, EXIT_MS, 'ease', axis);
+  slide(leftTab,  -dir * 60, EXIT_MS, 'ease', axis);
   content.style.opacity = '0';
   leftTab.style.opacity = '0';
 
   setTimeout(() => {
-    // Tartalom frissítése
     const p = products[newIdx];
     titleEl.textContent  = p.title;
     imgEl.src            = p.img;
     descEl.textContent   = p.desc;
 
-    // Bal felirat frissítése
     leftNum.textContent   = String(newIdx + 1).padStart(2, '0');
     leftLabel.textContent = p.title;
 
-    // Jobb oszlop frissítése
     updateRightColumn(newIdx);
     currentIdx = newIdx;
 
-    // Beúszás kiindulópontja (ellentétes oldal)
     [content, leftTab].forEach(el => {
       el.style.transition = 'none';
-      el.style.transform  = `translateX(${dir * 60}px)`;
+      el.style.transform  = `${fn}(${dir * 60}px)`;
       el.style.opacity    = '0';
     });
-    void content.offsetWidth; // force reflow
+    void content.offsetWidth;
 
-    // Beúszik
-    slide(content, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)');
-    slide(leftTab, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)');
+    slide(content, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)', axis);
+    slide(leftTab, 0, ENTER_MS, 'cubic-bezier(0.22, 1, 0.36, 1)', axis);
     content.style.opacity = '1';
     leftTab.style.opacity = '1';
 
@@ -122,7 +119,6 @@ section.querySelectorAll('.products__inactive-tabs .product-tab').forEach(tab =>
    PRODUCTS — scroll-driven termékváltás
 =========================================== */
 function updateProductsOnScroll() {
-  if (window.innerWidth <= 1023) return;
   const scrolled = -section.getBoundingClientRect().top;
   const vh = window.innerHeight;
   if (scrolled < 0 || scrolled >= products.length * vh) return;
@@ -169,8 +165,6 @@ if (gallery) {
   const cards = Array.from(gallery.querySelectorAll('.gallery__card'));
 
   function updateGallery() {
-    if (window.innerWidth <= 639) return;
-
     const scrolled = -gallery.getBoundingClientRect().top;
     const vh = window.innerHeight;
 
