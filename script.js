@@ -157,6 +157,25 @@ backToTopBtn.addEventListener('click', () => {
 
 
 /* ===========================================
+   HAMBURGER MENU
+=========================================== */
+const hamburger = document.querySelector('.hamburger');
+const navbar    = document.querySelector('.navbar');
+if (hamburger && navbar) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navbar.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navbar.contains(e.target)) {
+      navbar.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+
+/* ===========================================
    GALLERY — scroll-driven cover effect
 =========================================== */
 const gallery = document.querySelector('.gallery');
@@ -165,7 +184,9 @@ if (gallery) {
   const cards = Array.from(gallery.querySelectorAll('.gallery__card'));
 
   function updateGallery() {
-    const scrolled = -gallery.getBoundingClientRect().top;
+    const isMobile = window.innerWidth <= 639;
+    const textOffset = isMobile ? (gallery.querySelector('.gallery__left')?.offsetHeight || 0) : 0;
+    const scrolled = -gallery.getBoundingClientRect().top - textOffset;
     const vh = window.innerHeight;
 
     cards.forEach((card, i) => {
