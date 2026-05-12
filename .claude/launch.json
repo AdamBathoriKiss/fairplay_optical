@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "fairplay",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "5500", "/Users/bathoriadam/Developer/fairplay-optical"],
+      "port": 5500
+    }
+  ]
+}
