@@ -44,7 +44,7 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 440px;
+  width: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,8 +74,7 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   letter-spacing: -0.02em;
   color: var(--black);
   text-decoration: none;
-  width: 84px;
-  text-align: center;
+  white-space: nowrap;
 }
 
 .navbar a:hover { opacity: 0.6; }
@@ -452,14 +451,21 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   color: var(--white);
 }
 
-.footer__bg-title {
+.footer__end {
   position: absolute;
-  bottom: 9.5svh;       /* 62/653 */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  width: 1128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__bg-title {
   font-family: var(--serif);
-  font-size: clamp(80px, 30.63svh, 220px);     /* 200/653 */
-  line-height: clamp(50px, 13.17svh, 100px);   /* 86/653 */
+  font-size: clamp(80px, 30.63svh, 220px);
+  line-height: clamp(80px, 30.63svh, 220px); /* ← ezt add hozzá */
   letter-spacing: 6px;
   color: var(--white);
   text-align: center;
@@ -469,12 +475,12 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   user-select: none;
 }
 
-/* inner: left 57px, right 41px matches Figma (CTA ends 428px, socials ends 1239px = 41px from 1280) */
 .footer__inner {
   position: absolute;
-  top: 13.32svh;        /* 87/653 */
-  left: 57px;
-  right: 41px;
+  top: 13.32svh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1128px;
   display: flex;
   align-items: flex-start;
 }
@@ -562,11 +568,7 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
 .footer__socials a:hover { opacity: 0.7; }
 
 .footer__bottom {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1128px;
+  width: 100%;
 }
 
 .footer__line {
@@ -596,6 +598,39 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   filter: brightness(0) invert(1);
   opacity: 0.6;
 }
+
+/* ═══════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════ */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--black);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top svg { width: 100%; height: 100%; display: block; }
+
+.back-to-top:hover { opacity: 0.55; }
+
+.back-to-top.on-dark { color: var(--white); }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
@@ -653,13 +688,14 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   .review-card__text { font-size: 18px; line-height: 30px; }
 
   /* FOOTER */
-  .footer { height: auto; min-height: 0; padding-bottom: 220px; }
-  .footer__bg-title { font-size: clamp(80px, 12vw, 200px); letter-spacing: 3px; bottom: 62px; }
-  .footer__inner { position: static; padding: 60px 40px 0; flex-wrap: wrap; gap: 40px; right: auto; left: auto; top: auto; }
+  .footer { height: auto; min-height: 0; }
+  .footer__bg-title { font-size: clamp(80px, 12vw, 200px); letter-spacing: 3px; }
+  .footer__inner { position: static; padding: 60px 40px 0; flex-wrap: wrap; gap: 40px; width: auto; transform: none; left: auto; }
+  .footer__end { position: static; transform: none; width: auto; padding: 0 40px; }
   .footer__cta { flex: 0 0 100%; }
   .footer__nav { margin-left: 0; flex: 0 0 auto; }
   .footer__socials { margin-left: 40px; flex: 0 0 auto; }
-  .footer__bottom { width: calc(100% - 80px); margin: 0; transform: none; }
+  .footer__bottom { width: 100%; }
 }
 
 /* ─── Mobile  < 640 px ─── */
@@ -785,13 +821,14 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   .review-card__text { font-size: 16px; line-height: 26px; }
 
   /* FOOTER */
-  .footer { height: auto; min-height: 0; padding-bottom: 180px; }
-  .footer__bg-title { font-size: clamp(50px, 18vw, 120px); letter-spacing: 1px; bottom: 20px; }
-  .footer__inner { position: static; padding: 50px 16px 0; flex-wrap: wrap; gap: 32px; right: auto; left: auto; top: auto; }
+  .footer { height: auto; min-height: 0; }
+  .footer__bg-title { font-size: clamp(50px, 18vw, 120px); letter-spacing: 1px; }
+  .footer__inner { position: static; padding: 50px 16px 0; flex-wrap: wrap; gap: 32px; width: auto; transform: none; left: auto; }
+  .footer__end { position: static; transform: none; width: auto; padding: 0 16px; }
   .footer__cta { flex: 0 0 100%; }
   .footer__email { width: 100%; }
   .footer__nav { margin-left: 0; flex: 0 0 auto; }
   .footer__socials { margin-left: 0; flex: 0 0 auto; }
-  .footer__bottom { width: calc(100% - 32px); margin: 0; transform: none; }
+  .footer__bottom { width: 100%; }
   .footer__bottom-row { flex-direction: column; gap: 6px; align-items: center; padding-bottom: 16px; text-align: center; }
 }

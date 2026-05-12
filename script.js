@@ -6,12 +6,12 @@ const products = [
   },
   {
     title: 'Acetát Előtétes Kereteink',
-    img:   'assets/product2.jpg',
+    img:   'assets/gallery-new1.png',
     desc:  "Acetát kereteink kiváló minőségű alapanyagból készülnek. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
   },
   {
     title: 'Clip-onos Kereteink',
-    img:   'assets/product3.jpg',
+    img:   'assets/gallery-new3.png',
     desc:  "Clip-on megoldásaink praktikus választást kínálnak mindennapi használatra. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
   },
 ];
@@ -33,7 +33,9 @@ const ENTER_MS = 400;
 
 // Jobb oszlop frissítése: mindig a két inaktív terméket mutatja
 function updateRightColumn(activeIdx) {
-  const inactive = products.map((_, i) => i).filter(i => i !== activeIdx);
+  const count = products.length;
+  const inactive = [];
+  for (let i = 1; i < count; i++) inactive.push((activeIdx + i) % count);
   section.querySelectorAll('.products__inactive-tabs .product-tab').forEach((btn, i) => {
     const pi = inactive[i];
     btn.dataset.index = pi;
@@ -105,6 +107,33 @@ section.querySelectorAll('.products__inactive-tabs .product-tab').forEach(tab =>
   tab.addEventListener('click', () => {
     switchProduct(parseInt(tab.dataset.index, 10));
   });
+});
+
+
+/* ===========================================
+   BACK TO TOP
+=========================================== */
+const backToTopBtn = document.getElementById('backToTop');
+const heroSection  = document.querySelector('.hero');
+
+const aboutSection  = document.querySelector('.about');
+const footerSection = document.querySelector('.footer');
+
+window.addEventListener('scroll', () => {
+  const scrollY  = window.scrollY;
+  const btnPageY = scrollY + window.innerHeight - 50;
+
+  backToTopBtn.classList.toggle('visible', scrollY > heroSection.offsetHeight * 0.5);
+
+  const onDark =
+    (btnPageY >= aboutSection.offsetTop  && btnPageY < aboutSection.offsetTop  + aboutSection.offsetHeight) ||
+    (btnPageY >= footerSection.offsetTop && btnPageY < footerSection.offsetTop + footerSection.offsetHeight);
+
+  backToTopBtn.classList.toggle('on-dark', onDark);
+}, { passive: true });
+
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 

@@ -7,6 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baskervville&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -16,6 +21,8 @@
     <div class="hero__logo">
       <img src="assets/logo.png" alt="FairPlay Optical logo" class="hero__logo-img" />
       <nav class="navbar">
+        <a href="#">Főoldal</a>
+        <span class="dot"></span>
         <a href="#rolunk">Rólunk</a>
         <span class="dot"></span>
         <a href="#termekek">Termékeink</a>
@@ -111,7 +118,6 @@
 
   <!-- FOOTER -->
   <footer class="footer" id="kapcsolat">
-    <div class="footer__bg-title">FAIRPLAY</div>
     <div class="footer__inner">
       <div class="footer__cta">
         <p class="footer__tagline">Ne csak nézz, láss is – stílusosan.</p>
@@ -135,15 +141,25 @@
         <a href="#">Instagram</a>
       </div>
     </div>
-    <div class="footer__bottom">
-      <hr class="footer__line" />
-      <div class="footer__bottom-row">
-        <span class="footer__copy">Fairplay Optical Kft - Kazincbarcika</span>
-        <img src="assets/logo.png" alt="" class="footer__logo" />
-        <span class="footer__copy footer__copy--right">2026 Minden jog fenntartva</span>
+    <div class="footer__end">
+      <div class="footer__bg-title">FAIRPLAY</div>
+      <div class="footer__bottom">
+        <hr class="footer__line" />
+        <div class="footer__bottom-row">
+          <span class="footer__copy">Fairplay Optical Kft - Kazincbarcika</span>
+          <img src="assets/logo.png" alt="" class="footer__logo" />
+          <span class="footer__copy footer__copy--right">2026 Minden jog fenntartva</span>
+        </div>
       </div>
     </div>
   </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Vissza a tetejére">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="42" height="42" rx="10" stroke="currentColor" stroke-width="3"/>
+      <polyline points="13,30 24,17 35,30" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
   <script src="script.js"></script>
 </body>
