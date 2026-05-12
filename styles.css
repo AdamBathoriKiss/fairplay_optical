@@ -382,6 +382,7 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   height: 100%;
   padding: 32px 0 32px 16px;
   will-change: clip-path;
+  transition: clip-path 0.12s ease-out;
   display: flex;
   align-items: center;
   justify-content: flex-end;
