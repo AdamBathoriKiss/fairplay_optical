@@ -630,6 +630,54 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
 }
 
 /* ═══════════════════════════════════════
+   MENU OVERLAY
+═══════════════════════════════════════ */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu-overlay__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+.menu-overlay__nav a {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s;
+}
+.menu-overlay.open .menu-overlay__nav a {
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu-overlay.open .menu-overlay__nav a:nth-child(1) { transition-delay: 0.08s; }
+.menu-overlay.open .menu-overlay__nav a:nth-child(2) { transition-delay: 0.14s; }
+.menu-overlay.open .menu-overlay__nav a:nth-child(3) { transition-delay: 0.20s; }
+.menu-overlay.open .menu-overlay__nav a:nth-child(4) { transition-delay: 0.26s; }
+.menu-overlay.open .menu-overlay__nav a:nth-child(5) { transition-delay: 0.32s; }
+.menu-overlay__nav a:hover { opacity: 0.5; }
+
+/* ═══════════════════════════════════════
    BACK TO TOP
 ═══════════════════════════════════════ */
 .back-to-top {
@@ -801,53 +849,37 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   }
   .hero__title p { line-height: clamp(44px, 14vw, 86px); }
 
-  /* HERO — hamburger */
-  .hero__logo {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0;
-    padding: 10px 0;
-    top: 0;
-  }
-  .hero__logo-img { margin-bottom: 0; }
+  /* HERO — logo középen, hamburger fixed jobb sarokban */
+  .navbar { display: none; }
+  .dot { display: none; }
   .hamburger {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 5px;
-    background: none;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1001;
+    background: rgba(255,255,255,0.88);
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 4px;
-    z-index: 100;
+    padding: 8px;
   }
   .hamburger span {
     display: block;
     height: 2px;
     background: var(--black);
     border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.2s ease, width 0.3s ease;
   }
   .hamburger span:nth-child(1) { width: 22px; }
   .hamburger span:nth-child(2) { width: 14px; }
   .hamburger span:nth-child(3) { width: 22px; }
-  .navbar {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: -16px;
-    right: -16px;
-    background: var(--white);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 16px 16px;
-    gap: 10px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    z-index: 50;
-  }
-  .navbar.open { display: flex; }
-  .navbar a { font-size: 16px; line-height: 1.4; width: auto; padding: 0; }
-  .dot { display: none; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); width: 22px; }
 
   /* ABOUT */
   .about { height: auto; min-height: 0; overflow: hidden; }

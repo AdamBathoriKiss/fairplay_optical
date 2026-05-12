@@ -157,20 +157,30 @@ backToTopBtn.addEventListener('click', () => {
 
 
 /* ===========================================
-   HAMBURGER MENU
+   HAMBURGER MENU — fullscreen overlay
 =========================================== */
-const hamburger = document.querySelector('.hamburger');
-const navbar    = document.querySelector('.navbar');
-if (hamburger && navbar) {
+const hamburger   = document.querySelector('.hamburger');
+const menuOverlay = document.querySelector('.menu-overlay');
+
+function closeMenu() {
+  hamburger.classList.remove('open');
+  menuOverlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  menuOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (hamburger && menuOverlay) {
   hamburger.addEventListener('click', () => {
-    const isOpen = navbar.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('open');
+    menuOverlay.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
+    menuOverlay.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-  document.addEventListener('click', e => {
-    if (!hamburger.contains(e.target) && !navbar.contains(e.target)) {
-      navbar.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
+
+  menuOverlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 }
 

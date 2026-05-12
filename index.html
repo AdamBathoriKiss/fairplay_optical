@@ -18,11 +18,11 @@
 
   <!-- HERO -->
   <section class="hero">
+    <button class="hamburger" aria-label="Menü" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="hero__logo">
       <img src="assets/logo.png" alt="FairPlay Optical logo" class="hero__logo-img" />
-      <button class="hamburger" aria-label="Menü" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
       <nav class="navbar">
         <a href="#">Főoldal</a>
         <span class="dot"></span>
@@ -158,6 +158,16 @@
       </div>
     </div>
   </footer>
+
+  <div class="menu-overlay" aria-hidden="true">
+    <nav class="menu-overlay__nav">
+      <a href="#">Főoldal</a>
+      <a href="#rolunk">Rólunk</a>
+      <a href="#termekek">Termékeink</a>
+      <a href="#velemenyek">Vélemények</a>
+      <a href="#kapcsolat">Kapcsolat</a>
+    </nav>
+  </div>
 
   <button class="back-to-top" id="backToTop" aria-label="Vissza a tetejére">
     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
