@@ -612,11 +612,13 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
 }
 
 .footer__logo {
-  width: 40px;
-  height: 38px;
+  width: 54px;
+  height: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.6;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ═══════════════════════════════════════
