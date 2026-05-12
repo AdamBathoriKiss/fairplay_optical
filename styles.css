@@ -522,6 +522,8 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   grid-template-rows: auto auto;
   width: 370px;
   row-gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .footer__email-label {
@@ -553,14 +555,16 @@ body { background: var(--white); color: var(--black); font-family: var(--sans); 
   display: flex;
   flex-direction: column;
   gap: 11px;
+  text-align: right;
 }
 
 .footer__socials {
-  margin-left: 35px;
+  margin-left: 20px;
   flex: 0 0 117px;
   display: flex;
   flex-direction: column;
   gap: 11px;
+  text-align: right;
 }
 
 .footer__nav-heading {
