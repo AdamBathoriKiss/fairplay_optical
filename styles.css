@@ -623,16 +623,20 @@ body {
 .footer__email-label {
     font-family: var(--serif);
     font-size: 14px;
-    color: var(--gray);
+    color: var(--white);
     grid-column: 1;
     grid-row: 1;
+    align-self: center;
 }
 
 .footer__email-arrow {
-    font-size: 14px;
-    color: var(--gray);
+    width: 32px;
+    height: 32px;
+    color: var(--gold);
     grid-column: 2;
     grid-row: 1;
+    align-self: center;
+    flex-shrink: 0;
 }
 
 .footer__email-line {
@@ -642,33 +646,6 @@ body {
     background: var(--gold);
 }
 
-.footer__email-address {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    font-family: var(--serif);
-    font-size: 14px;
-    color: var(--white);
-    margin-top: 6px;
-}
-
-.footer__cta-btn {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 12px 28px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-family: var(--sans);
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-}
-
-.footer__cta-btn:hover {
-    background: var(--gold);
-    color: var(--black);
-}
 
 /* margin-left: auto pushes nav to the right; gap between nav and socials: 35px (Figma: 1122-1087) */
 .footer__nav {
