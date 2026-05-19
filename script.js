@@ -118,17 +118,20 @@ function switchProduct(newIdx) {
     }, EXIT_MS);
 }
 
-// Inactive tab kattintás → instant scroll (elkerüli a közbülső termékváltásokat)
+// Inactive tab kattintás → közvetlen termékváltás + scroll szinkron
 section
     .querySelectorAll(".products__inactive-tabs .product-tab")
     .forEach((tab) => {
         tab.addEventListener("click", () => {
             const idx = parseInt(tab.dataset.index, 10);
-            const top =
-                section.getBoundingClientRect().top +
-                window.scrollY +
-                idx * window.innerHeight;
-            window.scrollTo({ top, left: 0, behavior: "instant" });
+            // Ugyanaz a segmentSize képlet mint updateProductsOnScroll-ban
+            const sectionScrollHeight = section.offsetHeight - window.innerHeight;
+            const segmentSize = sectionScrollHeight / products.length;
+            // A szegmens közepére görgetünk – elkerüli a határértékes eseteket
+            const targetTop =
+                section.offsetTop + idx * segmentSize + segmentSize / 2;
+            switchProduct(idx);
+            window.scrollTo({ top: targetTop, left: 0, behavior: "instant" });
         });
     });
 
