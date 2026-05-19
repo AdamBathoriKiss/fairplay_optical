@@ -29,6 +29,8 @@ let currentIdx = 0;
 let isAnimating = false;
 let pendingIdx = -1;
 
+const progressDots = section.querySelectorAll(".products__dot");
+
 const EXIT_MS = 220;
 const ENTER_MS = 400;
 
@@ -86,6 +88,7 @@ function switchProduct(newIdx) {
 
         updateRightColumn(newIdx);
         currentIdx = newIdx;
+        progressDots.forEach((dot, i) => dot.classList.toggle("active", i === newIdx));
 
         [content, leftTab].forEach((el) => {
             el.style.transition = "none";
@@ -145,6 +148,23 @@ function updateProductsOnScroll() {
 }
 
 window.addEventListener("scroll", updateProductsOnScroll, { passive: true });
+
+/* ===========================================
+   STICKY HEADER
+=========================================== */
+const stickyHeader = document.querySelector(".sticky-header");
+const heroEl = document.querySelector(".hero");
+
+window.addEventListener(
+    "scroll",
+    () => {
+        stickyHeader.classList.toggle(
+            "visible",
+            window.scrollY > heroEl.offsetHeight * 0.85,
+        );
+    },
+    { passive: true },
+);
 
 /* ===========================================
    BACK TO TOP

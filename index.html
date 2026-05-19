@@ -21,6 +21,20 @@
 </head>
 <body>
 
+  <!-- STICKY NAVIGATION -->
+  <header class="sticky-header">
+    <div class="sticky-header__inner">
+      <img src="assets/logo.png" alt="FPOPTICAL" class="sticky-header__logo" />
+      <nav class="sticky-header__nav">
+        <a href="#">Főoldal</a>
+        <a href="#rolunk">Rólunk</a>
+        <a href="#termekek">Termékeink</a>
+        <a href="#velemenyek">Vélemények</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </nav>
+    </div>
+  </header>
+
   <!-- HERO -->
   <section class="hero">
     <button class="hamburger" aria-label="Menü" aria-expanded="false">
@@ -39,6 +53,7 @@
         <span class="dot"></span>
         <a href="#kapcsolat">Kapcsolat</a>
       </nav>
+      <p class="hero__subtitle">Szemüvegkeret-nagykereskedés optikák számára</p>
     </div>
     <div class="hero__img-wrap">
       <div class="hero__img-crop">
@@ -57,7 +72,7 @@
         <p class="body-text">Az FPOPTICAL Magyarország megbízható szemüvegkeret-nagykereskedője – kizárólag optikák számára. Folyamatosan megújuló kollekciónkból optikai keretek, acetát előtétesek és clip-onos megoldások egyaránt elérhetők, versenyképes áron és gyors kiszállítással. Célunk, hogy minden partneroptikánk számára kiszámítható, rugalmas és megbízható kereskedelmi hátteret biztosítsunk.</p>
       </div>
       <div class="about__img-wrap">
-        <img src="assets/about.jpg" alt="FPOPTICAL szemüvegkeret kínálat" class="about__img" />
+        <img src="assets/about.jpg" alt="FPOPTICAL szemüvegkeret kínálat" class="about__img" loading="lazy" />
       </div>
     </div>
   </section>
@@ -86,6 +101,12 @@
         <span class="product-tab__num">03</span>
         <span class="product-tab__label">Clip-onos Kereteink</span>
       </button>
+    </div>
+    <!-- Scroll progress indicator -->
+    <div class="products__progress" aria-hidden="true">
+      <span class="products__dot active"></span>
+      <span class="products__dot"></span>
+      <span class="products__dot"></span>
     </div>
   </div>
   </section>
@@ -119,13 +140,13 @@
       </div>
       <div class="gallery__right">
         <div class="gallery__card">
-          <img src="assets/gallery-new1.png" alt="Kollekció kép 1" class="gallery__card-img" />
+          <img src="assets/gallery-new1.png" alt="Kollekció kép 1" class="gallery__card-img" loading="lazy" />
         </div>
         <div class="gallery__card">
-          <img src="assets/gallery-new3.png" alt="Kollekció kép 2" class="gallery__card-img" />
+          <img src="assets/gallery-new3.png" alt="Kollekció kép 2" class="gallery__card-img" loading="lazy" />
         </div>
         <div class="gallery__card">
-          <img src="assets/gallery-new2.png" alt="Kollekció kép 3" class="gallery__card-img" />
+          <img src="assets/gallery-new2.png" alt="Kollekció kép 3" class="gallery__card-img" loading="lazy" />
         </div>
       </div>
     </div>
@@ -137,12 +158,20 @@
     <div class="reviews__grid">
       <div class="review-card">
         <p class="review-card__text">Az FPOPTICAL kereteinek minősége és az ár-érték arány messze kiemelkedik a piacon. A szállítás mindig pontos és gyors – vásárlóink visszajelzései alapján a keretek tartósak és divatosak. Bizalommal ajánlom minden kollégának.</p>
-        <p class="review-card__author">Waldhauser Optika<br />Miskolc</p>
+        <p class="review-card__author"><strong>Waldhauser Optika</strong><br />Miskolc</p>
       </div>
       <div class="review-card">
         <p class="review-card__text">Évek óta megbízható nagykereskedelmi partnerünk az FPOPTICAL. A clip-onos keretek különösen jól fogynak nálunk, de az egész kínálat megbízható és versenyképes. Az ügyintézés rugalmas, az együttműködés gördülékeny.</p>
-        <p class="review-card__author">Hatalyák Optika<br />Aszód</p>
+        <p class="review-card__author"><strong>Hatalyák Optika</strong><br />Aszód</p>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="cta-strip__inner">
+      <p class="cta-strip__text">Érdekli a kollekció? Vegye fel velünk a kapcsolatot.</p>
+      <a href="#kapcsolat" class="cta-strip__btn">Kapcsolat</a>
     </div>
   </section>
 
