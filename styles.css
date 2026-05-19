@@ -564,8 +564,9 @@ body {
 .footer__end {
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1234px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -573,8 +574,8 @@ body {
 
 .footer__bg-title {
     font-family: var(--serif);
-    font-size: clamp(80px, 30.63svh, 220px);
-    line-height: clamp(80px, 30.63svh, 220px); /* ← ezt add hozzá */
+    font-size: clamp(72px, 27.8svh, 200px);
+    line-height: clamp(72px, 27.8svh, 200px);
     letter-spacing: 6px;
     color: var(--white);
     text-align: center;
@@ -587,9 +588,9 @@ body {
 .footer__inner {
     position: absolute;
     top: 13.32svh;
-    left: 0;
-    right: 0;
-    padding: 0 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1234px;
     display: flex;
     align-items: flex-start;
 }
@@ -712,7 +713,6 @@ body {
 
 .footer__bottom {
     width: 100%;
-    padding: 0 40px;
 }
 
 .footer__line {

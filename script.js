@@ -252,3 +252,4 @@ if (gallery) {
     window.addEventListener("scroll", updateGallery, { passive: true });
     updateGallery();
 }
+
