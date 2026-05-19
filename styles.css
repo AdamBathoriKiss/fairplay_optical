@@ -141,7 +141,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     font-family: var(--serif);
-    font-size: clamp(80px, 30.63svh, 220px);
+    font-size: clamp(72px, 27.8svh, 200px);
     line-height: 0;
     letter-spacing: 6px;
     color: var(--black);
