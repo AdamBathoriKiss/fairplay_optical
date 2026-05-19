@@ -118,7 +118,7 @@ function switchProduct(newIdx) {
     }, EXIT_MS);
 }
 
-// Inactive tab kattintás → görget a megfelelő termék pozíciójára
+// Inactive tab kattintás → instant scroll (elkerüli a közbülső termékváltásokat)
 section
     .querySelectorAll(".products__inactive-tabs .product-tab")
     .forEach((tab) => {
@@ -128,7 +128,7 @@ section
                 section.getBoundingClientRect().top +
                 window.scrollY +
                 idx * window.innerHeight;
-            window.scrollTo({ top, behavior: "smooth" });
+            window.scrollTo({ top, left: 0, behavior: "instant" });
         });
     });
 
