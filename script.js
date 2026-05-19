@@ -2,17 +2,17 @@ const products = [
     {
         title: "Optikai lencsés kereteink",
         img: "assets/product1.jpg",
-        desc: "Másik kisebb leíró szöveg az aktuális kép mellé. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+        desc: "Acélból, acetátból és könnyű TR-90 anyagból készült kereteink klasszikus és kortárs vonalvezetésben egyaránt elérhetők. Kollekciónk széleskörű korosztályi lefedettséget biztosít, hogy optikájában minden vásárló megtalálja az ideális darabot.",
     },
     {
         title: "Acetát Előtétes Kereteink",
         img: "assets/gallery-new1.png",
-        desc: "Acetát kereteink kiváló minőségű alapanyagból készülnek. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        desc: "Prémium acetátból kézzel polírozott előtétes kereteink egyedi karakterrel bírnak. Élénk és visszafogott árnyalatokban, változatos formákban érhetők el – ideális választás elegáns, markáns megjelenést kereső vásárlóknak.",
     },
     {
         title: "Clip-onos Kereteink",
         img: "assets/gallery-new3.png",
-        desc: "Clip-on megoldásaink praktikus választást kínálnak mindennapi használatra. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        desc: "Clip-onos kereteink praktikus 2-in-1 megoldást kínálnak: a mágnesesen rögzülő napszemüveg-előtéttel egyetlen keret látja el a mindennapi és a napvédelmi funkciót. Különösen keresett termék aktív, utazó és sportos vásárlók körében.",
     },
 ];
 

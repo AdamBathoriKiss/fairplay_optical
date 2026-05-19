@@ -4,7 +4,7 @@
     {
       "name": "fairplay",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "5500", "/Users/bathoriadam/Developer/fairplay-optical"],
+      "runtimeArgs": ["serve", "-p", "5500", "/var/www/fairplay_optical"],
       "port": 5500
     }
   ]
