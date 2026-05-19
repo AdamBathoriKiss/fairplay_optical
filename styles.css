@@ -622,8 +622,8 @@ body {
 
 .footer__email-label {
     font-family: var(--serif);
-    font-size: 14px;
-    color: var(--white);
+    font-size: 18px;
+    color: var(--gray);
     grid-column: 1;
     grid-row: 1;
     align-self: center;
