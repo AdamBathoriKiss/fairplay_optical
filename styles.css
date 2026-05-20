@@ -1565,6 +1565,7 @@ body {
         transform: none;
         width: auto;
         padding: 0 16px;
+        margin-top: 48px;
     }
     .footer__cta {
         flex: 0 0 100%;
@@ -1590,9 +1591,12 @@ body {
     }
     .footer__bottom-row {
         flex-direction: column;
-        gap: 6px;
+        gap: 2px;
         align-items: center;
-        padding-bottom: 16px;
+        padding-bottom: 10px;
         text-align: center;
+    }
+    .footer__line {
+        margin-bottom: 5px;
     }
 }
