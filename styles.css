@@ -1267,14 +1267,14 @@ body {
         top: 130px;
     }
     .hero__title {
-        font-size: clamp(50px, 18vw, 120px);
+        font-size: clamp(36px, 13.8vw, 120px);
         width: 100%;
         top: 480px;
         height: auto;
-        letter-spacing: 1px;
+        letter-spacing: 0;
     }
     .hero__title p {
-        line-height: clamp(44px, 14vw, 86px);
+        line-height: clamp(34px, 12.5vw, 86px);
     }
 
     /* HERO — logo középen, hamburger fixed jobb sarokban */
@@ -1442,10 +1442,11 @@ body {
     .products__img {
         flex: 0 0 auto;
         width: 100%;
-        height: 45svh;
-        object-fit: cover;
+        height: auto;
+        max-height: 45svh;
+        object-fit: contain;
         border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
     }
 
     .products__desc {
@@ -1464,34 +1465,36 @@ body {
     .products__title {
         display: none;
     }
-    /* GALLERY — szöveg normál flow, képek sticky cover scroll */
+    /* GALLERY — mobilon egyszerű statikus kártyák */
     .gallery {
-        height: calc(200vh + 180px);
+        height: auto;
     }
     .gallery__inner {
         position: static;
         display: block;
-        height: 100%;
+        height: auto;
         overflow: visible;
         max-width: 100%;
     }
     .gallery__left {
         height: auto;
-        padding: 32px 16px 16px;
+        padding: 48px 16px 24px;
     }
     .gallery__right {
-        position: sticky;
-        top: 0;
-        height: 65svh;
-        overflow: hidden;
+        position: static;
+        height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 16px 40px;
     }
     .gallery__card {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: static;
         width: 100%;
-        height: 100%;
-        padding: 16px;
+        height: auto;
+        padding: 0;
+        clip-path: none !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1499,7 +1502,7 @@ body {
     .gallery__card-img {
         width: 100%;
         height: auto;
-        max-height: 100%;
+        max-height: none;
         object-fit: contain;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         display: block;
@@ -1544,8 +1547,8 @@ body {
         min-height: 0;
     }
     .footer__bg-title {
-        font-size: clamp(50px, 18vw, 120px);
-        letter-spacing: 1px;
+        font-size: clamp(36px, 13.8vw, 120px);
+        letter-spacing: 0;
     }
     .footer__inner {
         position: static;
