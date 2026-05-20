@@ -1548,6 +1548,7 @@ body {
     }
     .footer__bg-title {
         font-size: clamp(36px, 13.8vw, 120px);
+        line-height: 1;
         letter-spacing: 0;
     }
     .footer__inner {
