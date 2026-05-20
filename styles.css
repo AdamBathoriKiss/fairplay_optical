@@ -1555,7 +1555,8 @@ body {
         position: static;
         padding: 50px 16px 0;
         flex-wrap: wrap;
-        gap: 32px;
+        row-gap: 32px;
+        column-gap: 16px;
         width: auto;
         transform: none;
         left: auto;
@@ -1576,10 +1577,14 @@ body {
     .footer__nav {
         margin-left: 0;
         flex: 0 0 auto;
+        text-align: left;
+        gap: 0;
     }
     .footer__socials {
         margin-left: 0;
         flex: 0 0 auto;
+        text-align: left;
+        gap: 0;
     }
     .footer__nav a,
     .footer__socials a {
