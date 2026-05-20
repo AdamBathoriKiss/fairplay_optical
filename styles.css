@@ -520,8 +520,8 @@ body {
 
 .gallery__inner {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: 60px;
+    height: calc(100vh - 60px);
     display: grid;
     grid-template-columns: 2fr 3fr;
     overflow: hidden;
@@ -530,7 +530,7 @@ body {
 }
 
 .gallery__left {
-    height: 100vh;
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -554,7 +554,7 @@ body {
 
 .gallery__right {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 60px);
     overflow: hidden;
 }
 
@@ -564,7 +564,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 40px 32px;
+    padding: 20px 24px;
     will-change: clip-path;
     transition: clip-path 0.12s ease-out;
     display: flex;
