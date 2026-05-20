@@ -243,14 +243,6 @@ if (gallery) {
     const cards = Array.from(gallery.querySelectorAll(".gallery__card"));
 
     function updateGallery() {
-        // Mobilon statikus layout, nincs scroll-driven animáció
-        if (window.innerWidth <= 639) {
-            cards.forEach((card) => {
-                card.style.clipPath = "";
-            });
-            return;
-        }
-
         const rect = gallery.getBoundingClientRect();
         const scrolled = -rect.top;
 
