@@ -548,6 +548,8 @@ body {
     font-size: 16px;
     line-height: 25px;
     color: var(--black);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
 }
 
 .gallery__right {
@@ -1522,6 +1524,11 @@ body {
     .gallery__left {
         height: auto;
         padding: 48px 16px 24px;
+    }
+    .gallery__desc {
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        font-synthesis: none;
     }
     .gallery__right {
         position: static;
