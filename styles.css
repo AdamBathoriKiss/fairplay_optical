@@ -613,7 +613,7 @@ body {
 .review-card {
     flex: 1;
     max-width: 605px;
-    height: 50.12svh; /* 417/832 */
+    min-height: 50.12svh; /* 417/832 */
     background: var(--dark);
     border-radius: 25px;
     box-shadow: 3px 1px 4px rgba(0, 0, 0, 0.25);
@@ -1271,14 +1271,7 @@ body {
         top: 160px;
     }
     .hero__title {
-        font-size: clamp(36px, 13.8vw, 120px);
-        width: 100%;
-        top: 420px;
-        height: auto;
-        letter-spacing: 0;
-    }
-    .hero__title p {
-        line-height: clamp(34px, 12.5vw, 86px);
+        display: none;
     }
 
     /* HERO — logo középen, hamburger fixed jobb sarokban */
