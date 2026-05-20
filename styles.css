@@ -262,7 +262,7 @@ body {
 
 .stats__label {
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gray);
@@ -660,7 +660,7 @@ body {
    CTA STRIP
 ═══════════════════════════════════════ */
 .cta-strip {
-    background: var(--cream);
+    background: var(--dark);
     padding: 72px 40px;
 }
 
@@ -677,7 +677,7 @@ body {
     font-family: var(--serif);
     font-size: clamp(22px, 2.8vw, 40px);
     letter-spacing: 0.02em;
-    color: var(--black);
+    color: var(--white);
     line-height: 1.3;
 }
 
@@ -686,17 +686,18 @@ body {
     font-size: 13px;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--black);
+    color: var(--white);
     text-decoration: none;
-    border: 1px solid var(--black);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 14px 40px;
     flex-shrink: 0;
-    transition: background 0.22s ease, color 0.22s ease;
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
 }
 
 .cta-strip__btn:hover {
-    background: var(--black);
-    color: var(--white);
+    background: var(--white);
+    color: var(--dark);
+    border-color: var(--white);
 }
 
 /* ═══════════════════════════════════════
@@ -1003,6 +1004,9 @@ body {
     .cta-strip__btn {
         transition: none;
     }
+    .menu-overlay.open .menu-overlay__nav a {
+        transition-delay: 0s;
+    }
 }
 
 /* ─── Tablet  640 – 1023 px ─── */
@@ -1066,7 +1070,7 @@ body {
     }
     .product-tab.active {
         left: 40px;
-        top: 28px;
+        top: 68px;
         flex-direction: row;
         align-items: center;
         gap: 14px;
@@ -1086,7 +1090,7 @@ body {
         opacity: 1;
     }
     .products__inactive-tabs {
-        top: 28px;
+        top: 68px;
         right: 40px;
         width: auto;
         flex-direction: row;
@@ -1112,7 +1116,7 @@ body {
     }
     .products__content {
         position: absolute;
-        top: 76px;
+        top: 112px;
         left: 40px;
         right: 40px;
         bottom: 40px;
@@ -1215,9 +1219,6 @@ body {
     .sticky-header {
         display: none;
     }
-    .hero__subtitle {
-        display: none;
-    }
     .cta-strip__inner {
         flex-direction: column;
         align-items: flex-start;
@@ -1226,9 +1227,14 @@ body {
     .cta-strip {
         padding: 50px 16px;
     }
+    .cta-strip__btn {
+        width: 100%;
+        text-align: center;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
     /* HERO */
     .hero {
-        height: 480px;
+        height: 420px;
         min-height: 0;
     }
     .hero__logo {
@@ -1239,6 +1245,11 @@ body {
     .hero__logo-img {
         width: 70px;
         height: 70px;
+    }
+    .hero__subtitle {
+        display: block;
+        margin-top: 8px;
+        font-size: 10px;
     }
     .navbar {
         gap: 4px;
@@ -1256,18 +1267,18 @@ body {
         display: none;
     }
     .hero__img-wrap {
-        width: 96%;
-        top: 130px;
+        width: 100%;
+        top: 160px;
     }
     .hero__title {
-        font-size: clamp(50px, 18vw, 120px);
+        font-size: clamp(36px, 13.8vw, 120px);
         width: 100%;
-        top: 480px;
+        top: 420px;
         height: auto;
-        letter-spacing: 1px;
+        letter-spacing: 0;
     }
     .hero__title p {
-        line-height: clamp(44px, 14vw, 86px);
+        line-height: clamp(34px, 12.5vw, 86px);
     }
 
     /* HERO — logo középen, hamburger fixed jobb sarokban */
@@ -1281,6 +1292,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        justify-content: center;
         gap: 5px;
         position: fixed;
         top: 16px;
@@ -1291,6 +1303,8 @@ body {
         border-radius: 8px;
         cursor: pointer;
         padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
     }
     .hamburger span {
         display: block;
@@ -1404,13 +1418,52 @@ body {
         opacity: 1;
     }
 
+    /* Inaktív tabok – egymás alatt, az oldal alján */
     .products__inactive-tabs {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: auto;
+        gap: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.09);
     }
-
     .products__inactive-tabs .product-tab {
         position: static;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        min-height: 44px;
+        text-align: left;
+    }
+    .products__inactive-tabs .product-tab + .product-tab {
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .products__inactive-tabs .product-tab .product-tab__num {
         width: auto;
+        flex-shrink: 0;
+        font-size: 14px;
+    }
+    .products__inactive-tabs .product-tab .product-tab__label {
+        writing-mode: horizontal-tb;
+        transform: none;
+        height: auto;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0;
+        opacity: 0.5;
+        justify-content: flex-start;
+    }
+
+    .products__progress {
+        display: none;
     }
 
     /* A fő tartalom elosztása */
@@ -1422,9 +1475,9 @@ body {
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        margin: 0 20px 20px 20px;
-        gap: 16px;
+        justify-content: center;
+        margin: 0 20px 108px 20px;
+        gap: 20px;
         overflow: hidden;
         min-height: 0;
     }
@@ -1432,56 +1485,59 @@ body {
     .products__img {
         flex: 0 0 auto;
         width: 100%;
-        height: 45svh;
-        object-fit: cover;
+        height: auto;
+        max-height: 45svh;
+        object-fit: contain;
         border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
     }
 
     .products__desc {
-        flex: 1;
+        flex: 0 0 auto;
         width: 100%;
         font-size: 14px;
-        line-height: 1.55;
+        line-height: 1.6;
         text-align: left;
         color: var(--black);
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 5;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
     }
 
     .products__title {
         display: none;
     }
-    /* GALLERY — szöveg normál flow, képek sticky cover scroll */
+    /* GALLERY — mobilon egyszerű statikus kártyák */
     .gallery {
-        height: calc(200vh + 180px);
+        height: auto;
     }
     .gallery__inner {
         position: static;
         display: block;
-        height: 100%;
+        height: auto;
         overflow: visible;
         max-width: 100%;
     }
     .gallery__left {
         height: auto;
-        padding: 32px 16px 16px;
+        padding: 48px 16px 24px;
     }
     .gallery__right {
-        position: sticky;
-        top: 0;
-        height: 65svh;
-        overflow: hidden;
+        position: static;
+        height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 16px 40px;
     }
     .gallery__card {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: static;
         width: 100%;
-        height: 100%;
-        padding: 16px;
+        height: auto;
+        padding: 0;
+        clip-path: none !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1489,7 +1545,7 @@ body {
     .gallery__card-img {
         width: 100%;
         height: auto;
-        max-height: 100%;
+        max-height: none;
         object-fit: contain;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         display: block;
@@ -1524,6 +1580,9 @@ body {
         font-size: 16px;
         line-height: 26px;
     }
+    .review-card__author {
+        font-size: 16px;
+    }
 
     /* FOOTER */
     .footer {
@@ -1531,14 +1590,16 @@ body {
         min-height: 0;
     }
     .footer__bg-title {
-        font-size: clamp(50px, 18vw, 120px);
-        letter-spacing: 1px;
+        font-size: clamp(36px, 13.8vw, 120px);
+        line-height: 1;
+        letter-spacing: 0;
     }
     .footer__inner {
         position: static;
         padding: 50px 16px 0;
         flex-wrap: wrap;
-        gap: 32px;
+        row-gap: 32px;
+        column-gap: 16px;
         width: auto;
         transform: none;
         left: auto;
@@ -1548,6 +1609,7 @@ body {
         transform: none;
         width: auto;
         padding: 0 16px;
+        margin-top: 48px;
     }
     .footer__cta {
         flex: 0 0 100%;
@@ -1558,19 +1620,37 @@ body {
     .footer__nav {
         margin-left: 0;
         flex: 0 0 auto;
+        text-align: left;
+        gap: 0;
     }
     .footer__socials {
         margin-left: 0;
         flex: 0 0 auto;
+        text-align: left;
+        gap: 0;
+    }
+    .footer__nav a,
+    .footer__socials a {
+        display: block;
+        padding: 10px 0;
     }
     .footer__bottom {
         width: 100%;
     }
     .footer__bottom-row {
         flex-direction: column;
-        gap: 6px;
+        gap: 2px;
         align-items: center;
-        padding-bottom: 16px;
+        padding-bottom: 10px;
         text-align: center;
+    }
+    .footer__line {
+        margin-bottom: 5px;
+    }
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 16px;
     }
 }

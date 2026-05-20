@@ -243,18 +243,18 @@ if (gallery) {
     const cards = Array.from(gallery.querySelectorAll(".gallery__card"));
 
     function updateGallery() {
-        const isMobile = window.innerWidth <= 639;
-        // Mobilon a szöveges rész (gallery__left) magasságát is figyelembe kell venni
-        const textOffset = isMobile
-            ? gallery.querySelector(".gallery__left")?.offsetHeight || 0
-            : 0;
+        // Mobilon statikus layout, nincs scroll-driven animáció
+        if (window.innerWidth <= 639) {
+            cards.forEach((card) => {
+                card.style.clipPath = "";
+            });
+            return;
+        }
 
-        // A görgetés kezdetét eltoljuk a szöveggel
         const rect = gallery.getBoundingClientRect();
-        const scrolled = -rect.top - textOffset;
+        const scrolled = -rect.top;
 
-        // A számításnál a viewport magasságot használjuk alapnak
-        const vh = window.innerHeight * 0.8; // Mobilon kicsit érzékenyebbre vesszük
+        const vh = window.innerHeight * 0.8;
 
         cards.forEach((card, i) => {
             card.style.zIndex = i + 1;
