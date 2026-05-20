@@ -16,6 +16,8 @@ const products = [
     },
 ];
 
+products.forEach(p => { const i = new Image(); i.src = p.img; });
+
 const section = document.querySelector(".products");
 const leftTab = section.querySelector(".product-tab.active");
 const leftNum = leftTab.querySelector(".product-tab__num");
@@ -80,41 +82,50 @@ function switchProduct(newIdx) {
     setTimeout(() => {
         const p = products[newIdx];
         titleEl.textContent = p.title;
-        imgEl.src = p.img;
         descEl.textContent = p.desc;
-
         leftNum.textContent = String(newIdx + 1).padStart(2, "0");
         leftLabel.textContent = p.title;
-
         updateRightColumn(newIdx);
         currentIdx = newIdx;
         progressDots.forEach((dot, i) => dot.classList.toggle("active", i === newIdx));
 
-        [content, leftTab].forEach((el) => {
-            el.style.transition = "none";
-            el.style.transform = `${fn}(${dir * 60}px)`;
-            el.style.opacity = "0";
-        });
-        void content.offsetWidth;
-
-        slide(content, 0, ENTER_MS, "cubic-bezier(0.22, 1, 0.36, 1)", axis);
-        slide(leftTab, 0, ENTER_MS, "cubic-bezier(0.22, 1, 0.36, 1)", axis);
-        content.style.opacity = "1";
-        leftTab.style.opacity = "1";
-
-        setTimeout(() => {
+        function startEnter() {
             [content, leftTab].forEach((el) => {
-                el.style.transition = "";
-                el.style.transform = "";
-                el.style.opacity = "";
+                el.style.transition = "none";
+                el.style.transform = `${fn}(${dir * 60}px)`;
+                el.style.opacity = "0";
             });
-            isAnimating = false;
-            if (pendingIdx !== -1 && pendingIdx !== currentIdx) {
-                const p = pendingIdx;
-                pendingIdx = -1;
-                switchProduct(p);
-            }
-        }, ENTER_MS);
+            void content.offsetWidth;
+
+            slide(content, 0, ENTER_MS, "cubic-bezier(0.22, 1, 0.36, 1)", axis);
+            slide(leftTab, 0, ENTER_MS, "cubic-bezier(0.22, 1, 0.36, 1)", axis);
+            content.style.opacity = "1";
+            leftTab.style.opacity = "1";
+
+            setTimeout(() => {
+                [content, leftTab].forEach((el) => {
+                    el.style.transition = "";
+                    el.style.transform = "";
+                    el.style.opacity = "";
+                });
+                isAnimating = false;
+                if (pendingIdx !== -1 && pendingIdx !== currentIdx) {
+                    const p = pendingIdx;
+                    pendingIdx = -1;
+                    switchProduct(p);
+                }
+            }, ENTER_MS);
+        }
+
+        imgEl.onload = null;
+        imgEl.onerror = null;
+        imgEl.src = p.img;
+        if (imgEl.complete) {
+            startEnter();
+        } else {
+            imgEl.onload = startEnter;
+            imgEl.onerror = startEnter;
+        }
     }, EXIT_MS);
 }
 
