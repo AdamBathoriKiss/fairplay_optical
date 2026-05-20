@@ -262,7 +262,7 @@ body {
 
 .stats__label {
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gray);
@@ -1003,6 +1003,9 @@ body {
     .cta-strip__btn {
         transition: none;
     }
+    .menu-overlay.open .menu-overlay__nav a {
+        transition-delay: 0s;
+    }
 }
 
 /* ─── Tablet  640 – 1023 px ─── */
@@ -1066,7 +1069,7 @@ body {
     }
     .product-tab.active {
         left: 40px;
-        top: 28px;
+        top: 68px;
         flex-direction: row;
         align-items: center;
         gap: 14px;
@@ -1086,7 +1089,7 @@ body {
         opacity: 1;
     }
     .products__inactive-tabs {
-        top: 28px;
+        top: 68px;
         right: 40px;
         width: auto;
         flex-direction: row;
@@ -1112,7 +1115,7 @@ body {
     }
     .products__content {
         position: absolute;
-        top: 76px;
+        top: 112px;
         left: 40px;
         right: 40px;
         bottom: 40px;
@@ -1226,6 +1229,10 @@ body {
     .cta-strip {
         padding: 50px 16px;
     }
+    .cta-strip__btn {
+        width: 100%;
+        text-align: center;
+    }
     /* HERO */
     .hero {
         height: 480px;
@@ -1281,6 +1288,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        justify-content: center;
         gap: 5px;
         position: fixed;
         top: 16px;
@@ -1291,6 +1299,8 @@ body {
         border-radius: 8px;
         cursor: pointer;
         padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
     }
     .hamburger span {
         display: block;
@@ -1524,6 +1534,9 @@ body {
         font-size: 16px;
         line-height: 26px;
     }
+    .review-card__author {
+        font-size: 16px;
+    }
 
     /* FOOTER */
     .footer {
@@ -1562,6 +1575,11 @@ body {
     .footer__socials {
         margin-left: 0;
         flex: 0 0 auto;
+    }
+    .footer__nav a,
+    .footer__socials a {
+        display: block;
+        padding: 10px 0;
     }
     .footer__bottom {
         width: 100%;
